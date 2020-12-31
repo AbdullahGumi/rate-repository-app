@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
     backgroundColor: theme.background.backgroundColor,
-    paddingLeft: 10,
     height: 100,
     justifyContent: 'center'
   },

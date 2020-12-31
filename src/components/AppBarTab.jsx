@@ -1,20 +1,28 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableWithoutFeedback, ScrollView, StyleSheet } from 'react-native';
 import { Link } from 'react-router-native';
 
 import Text from './Text';
 
+const styles = StyleSheet.create({
+	container: {
+		padding: 10,
+		flexDirection: 'row'
+	}
+})
+
 const AppBarTab = () => (
-	<View>
+	<View style={styles.container}>
 		<TouchableWithoutFeedback>
-			<View>
-				<Link to='/'>
-					<Text color='primary' fontWeight='bold'>Repositories</Text>
-				</Link>
-				<Link to='/signin'>
-					<Text color='primary' fontWeight='bold'>Sign In</Text>
-				</Link>
-			</View>
+			<ScrollView horizontal>
+					<Link to='/'>
+						<Text color='primary' fontWeight='bold'>Repositories</Text>
+					</Link>
+					<Text>  </Text>
+					<Link to='/signin'>
+						<Text color='primary' fontWeight='bold'>Sign In</Text>
+					</Link>
+			</ScrollView>
 		</TouchableWithoutFeedback>
 	</View>
 );
