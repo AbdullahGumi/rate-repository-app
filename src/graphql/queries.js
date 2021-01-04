@@ -4,7 +4,6 @@ export const GET_REPOSITORIES = gql`
 query {
     repositories{
     edges {
-      cursor
       node{
         fullName
         description
