@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, ScrollView, StyleSheet } from 'react-native';
 import { Link } from 'react-router-native';
+import useSignOut from '../hooks/useSignOut';
 
 import Text from './Text';
 
@@ -11,20 +12,30 @@ const styles = StyleSheet.create({
 	}
 })
 
-const AppBarTab = () => (
-	<View style={styles.container}>
-		<TouchableWithoutFeedback>
-			<ScrollView horizontal>
-					<Link to='/'>
-						<Text color='primary' fontWeight='bold'>Repositories</Text>
-					</Link>
-					<Text>  </Text>
-					<Link to='/signin'>
-						<Text color='primary' fontWeight='bold'>Sign In</Text>
-					</Link>
-			</ScrollView>
-		</TouchableWithoutFeedback>
-	</View>
-);
+const AppBarTab = () => {
+	const [signOut, data] = useSignOut();
+
+	return (
+		<View style={styles.container}>
+			<TouchableWithoutFeedback>
+				<ScrollView horizontal>
+						<Link to='/'>
+							<Text color='primary' fontWeight='bold'>Repositories</Text>
+						</Link>
+						<Text>  </Text>
+						{data && !data.authorizedUser ? (
+							<Link to='/signin'>
+								<Text color='primary' fontWeight='bold'>Sign In</Text>
+							</Link>
+						) : (
+							<Text onPress={signOut} color='primary' fontWeight='bold'>Sign Out</Text>
+						)
+
+						}
+				</ScrollView>
+			</TouchableWithoutFeedback>
+		</View>
+	);
+};
 
 export default AppBarTab;
