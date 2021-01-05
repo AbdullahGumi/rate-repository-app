@@ -8,7 +8,7 @@ import createApolloClient from './src/utils/apolloClient';
 
 const apolloClient = createApolloClient();
 
-export default function App() {
+const App = () => {
   return (
   	<View>
 	  	<NativeRouter>
@@ -19,3 +19,4 @@ export default function App() {
   	</View>
   );
 }
+export default App;
