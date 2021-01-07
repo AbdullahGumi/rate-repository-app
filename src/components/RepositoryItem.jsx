@@ -70,7 +70,7 @@ const RepositoryItem = ({ list }) => {
         </View>
         <View style={styles.flexContainerB}>
           <View>
-            <Text style={styles.fullname}>{list.item.fullName}</Text>
+            <Text testID='fullName' style={styles.fullname}>{list.item.fullName}</Text>
           </View>
           <View>
             <Text style={styles.description}>{list.item.description}</Text>
