@@ -30,11 +30,13 @@ const SignInForm = ({ onSubmit }) => {
   return (
     <View style={styles.inputContainer}>
       <FormikTextInput
+        testID='usernameField'
         style={styles.input}
         name="username"
         placeholder="username"
       />
       <FormikTextInput
+        testID='passwordField'
         style={styles.input}
         name="password"
         placeholder="password"
@@ -42,7 +44,7 @@ const SignInForm = ({ onSubmit }) => {
       />
       <TouchableWithoutFeedback onPress={onSubmit}>
       <View style={styles.siginBtn}>
-          <Text style={{ color: 'white', alignSelf: 'center'}}>Sign In</Text>
+          <Text testID='submitButton' style={{ color: 'white', alignSelf: 'center'}}>Sign In</Text>
       </View>
       </TouchableWithoutFeedback>
     </View>
