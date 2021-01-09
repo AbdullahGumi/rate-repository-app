@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { useHistory } from 'react-router-native';
 import theme from '../theme';
 import Text from './Text';
 import CountItem from './CountItem';
@@ -59,34 +60,42 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ list }) => {
+  const history = useHistory();
+  
+  const handlePress = () => {
+    history.push(`/repositories/${list.item.fullName.replace('/', '.')}`)
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.flexContainerA}>
-        <View>
-          <Image 
-            style={styles.avatar} 
-            source={{ uri: `${list.item.ownerAvatarUrl}` }}
-          />
-        </View>
-        <View style={styles.flexContainerB}>
+    <TouchableOpacity activeOpacity={0.8} onPress={handlePress}>
+      <View style={styles.container}>
+        <View style={styles.flexContainerA}>
           <View>
-            <Text testID='fullName' style={styles.fullname}>{list.item.fullName}</Text>
+            <Image 
+              style={styles.avatar} 
+              source={{ uri: `${list.item.ownerAvatarUrl}` }}
+            />
           </View>
-          <View>
-            <Text style={styles.description}>{list.item.description}</Text>
-          </View>
-          <View style={styles.language}>
-            <Text style={styles.languageText}>{list.item.language}</Text>
+          <View style={styles.flexContainerB}>
+            <View>
+              <Text testID='fullName' style={styles.fullname}>{list.item.fullName}</Text>
+            </View>
+            <View>
+              <Text style={styles.description}>{list.item.description}</Text>
+            </View>
+            <View style={styles.language}>
+              <Text style={styles.languageText}>{list.item.language}</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <View style={styles.countDetails}>
-        <CountItem name="stars" count={list.item.stargazersCount} />
-        <CountItem name="forks" count={list.item.forksCount} />
-        <CountItem name="rating" count={list.item.ratingAverage} />
-        <CountItem name="review" count={list.item.reviewCount} />
-      </View>    
-    </View>
+        <View style={styles.countDetails}>
+          <CountItem name="stars" count={list.item.stargazersCount} />
+          <CountItem name="forks" count={list.item.forksCount} />
+          <CountItem name="rating" count={list.item.ratingAverage} />
+          <CountItem name="review" count={list.item.reviewCount} />
+        </View>    
+      </View>      
+    </TouchableOpacity>
   );
 };
 

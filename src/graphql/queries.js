@@ -27,3 +27,20 @@ query{
   }
 }
 `;
+
+export const GET_REPOSITORIY = gql`
+query repository($id: ID!){
+  repository(id: $id){
+    id
+    fullName
+    url
+    description
+    language
+    ratingAverage
+    forksCount
+    stargazersCount
+    ownerAvatarUrl
+    reviewCount
+  }
+}
+`
