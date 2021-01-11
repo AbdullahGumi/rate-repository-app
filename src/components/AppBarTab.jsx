@@ -23,12 +23,20 @@ const AppBarTab = () => {
 							<Text color='primary' fontWeight='bold'>Repositories</Text>
 						</Link>
 						<Text>  </Text>
+						{data && data.authorizedUser &&
+							<Link to='/createReview'>
+								<Text color='primary' fontWeight='bold'>Create a review</Text>
+							</Link>												
+						}						
+						<Text>  </Text>
 						{data && !data.authorizedUser ? (
 							<Link to='/signin'>
 								<Text color='primary' fontWeight='bold'>Sign In</Text>
 							</Link>
 						) : (
-							<Text onPress={signOut} color='primary' fontWeight='bold'>Sign Out</Text>
+							<View>
+								<Text onPress={signOut} color='primary' fontWeight='bold'>Sign Out</Text>			
+							</View>							
 						)
 
 						}
