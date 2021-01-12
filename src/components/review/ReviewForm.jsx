@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
-import FormikTextInput from './FormikTextInput';
-import theme from '../theme';
+import FormikTextInput from '../custom-text-and-text-input/FormikTextInput';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -23,32 +23,45 @@ const styles = StyleSheet.create({
     height:45,
     backgroundColor: theme.colors.primary,
     borderRadius: 4,
+  },
+  errorText: {
+    color: 'red'
   }
 })
 
-const SignInForm = ({ onSubmit }) => {
+const ReviewForm = ({ onSubmit, error }) => {
+ const message = error && error.graphQLErrors.map(({ message }) => message);
   return (
     <View style={styles.inputContainer}>
+      <Text style={styles.errorText}>{message}</Text>
       <FormikTextInput
-        testID='usernameField'
         style={styles.input}
-        name="username"
-        placeholder="username"
+        name="ownerName"
+        placeholder="Repository owner name"
       />
       <FormikTextInput
-        testID='passwordField'
         style={styles.input}
-        name="password"
-        placeholder="password"
-        secureTextEntry
+        name="repositoryName"
+        placeholder="Repository name"
+      />
+      <FormikTextInput
+        style={styles.input}
+        name="rating"
+        placeholder="Rating between 0 and 100"
+      />
+      <FormikTextInput
+        style={styles.input}
+        name="text"
+        multiline
+        placeholder="Review"
       />
       <TouchableWithoutFeedback onPress={onSubmit}>
       <View style={styles.siginBtn}>
-          <Text testID='submitButton' style={{ color: 'white', alignSelf: 'center'}}>Sign In</Text>
+          <Text style={{ color: 'white', alignSelf: 'center'}}>Create a review</Text>
       </View>
       </TouchableWithoutFeedback>
     </View>
   );
 };
 
-export default SignInForm;
+export default ReviewForm;

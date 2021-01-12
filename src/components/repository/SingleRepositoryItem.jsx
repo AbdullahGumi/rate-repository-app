@@ -1,10 +1,10 @@
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { useParams } from 'react-router-native';
-import ReviewItem from './ReviewItem';
+import ReviewItem from '../review/ReviewItem';
 import RepositoryInfo from './RepositoryInfo';
-import useSingleRepository from '../hooks/useSingleRepository';
-import useRepositoryReviews from '../hooks/useRepositoryReviews';
+import useSingleRepository from '../../hooks/useSingleRepository';
+import useRepositoryReviews from '../../hooks/useRepositoryReviews';
 
 const styles = StyleSheet.create({
   separator: {

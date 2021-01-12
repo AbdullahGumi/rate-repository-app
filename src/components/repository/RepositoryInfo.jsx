@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, TouchableOpacity, Linking, StyleSheet, Image } from 'react-native';
-import Text from '../components/Text'
+import Text from '../custom-text-and-text-input/Text'
 
 import CountItem from './CountItem';
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {

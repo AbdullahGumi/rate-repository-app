@@ -1,5 +1,5 @@
 import React from 'react';
-import useSignIn from '../hooks/useSignIn';
+import useSignIn from '../../hooks/useSignIn';
 import SignInContainer from './SignInContainer';
 
 const initialValues = {
@@ -16,8 +16,7 @@ const SignIn = () => {
 		const { username, password } = values;
 
 		try {
-		  const { data } = await signIn({ username, password });
-		  console.log(data.authorize.accessToken)
+		  await signIn({ username, password });
 		} catch (e) {
 		  console.log('error:', e);
 		}

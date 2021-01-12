@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { useHistory } from 'react-router-native';
-import theme from '../theme';
-import Text from './Text';
+import theme from '../../theme';
+import Text from '../custom-text-and-text-input/Text';
 import CountItem from './CountItem';
 
 const styles = StyleSheet.create({

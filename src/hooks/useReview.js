@@ -11,9 +11,8 @@ const useReview = () => {
   const submitReview = async ({ repositoryName, ownerName, rating, text }) => {
     mutate({ variables: { repositoryName, ownerName, rating: Number(rating), text }})
     history.push(`/repositories/${data.createReview.repositoryId}`)
-    return data;
   };
 
-  return [submitReview, { data, error }];
+  return [submitReview, { error }];
 };
 export default useReview;

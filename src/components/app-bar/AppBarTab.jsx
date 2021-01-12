@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, ScrollView, StyleSheet } from 'react-native';
 import { Link } from 'react-router-native';
-import useSignOut from '../hooks/useSignOut';
+import useSignOut from '../../hooks/useSignOut';
 
-import Text from './Text';
+import Text from '../custom-text-and-text-input/Text';
 
 const styles = StyleSheet.create({
 	container: {
@@ -30,9 +30,19 @@ const AppBarTab = () => {
 						}						
 						<Text>  </Text>
 						{data && !data.authorizedUser ? (
-							<Link to='/signin'>
-								<Text color='primary' fontWeight='bold'>Sign In</Text>
-							</Link>
+							<View style={{ flexDirection: 'row' }}>
+								<View>
+									<Link to='/signin'>
+										<Text color='primary' fontWeight='bold'>Sign In</Text>
+									</Link>
+								</View>
+								<Text>  </Text>
+								<View>
+									<Link to='/signup'>
+										<Text color='primary' fontWeight='bold'>Sign Up</Text>
+									</Link>									
+								</View>						
+							</View>						
 						) : (
 							<View>
 								<Text onPress={signOut} color='primary' fontWeight='bold'>Sign Out</Text>			

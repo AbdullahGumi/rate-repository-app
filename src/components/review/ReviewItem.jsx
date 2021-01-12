@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { format } from 'date-fns';
 
-import theme from '../theme';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
