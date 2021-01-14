@@ -32,7 +32,7 @@ const SortRepositories = () => {
 
   return (
     <Provider>
-        <Button onPress={openMenu}>{sortText}</Button>
+        <Button color={Colors.grey100} onPress={openMenu}>{sortText}</Button>
             <Modal animationType="slide" transparent={true} visible={visible}>    
                 <View style={styles.modalBox}>
                     <IconButton

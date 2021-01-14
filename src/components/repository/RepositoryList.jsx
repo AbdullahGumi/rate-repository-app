@@ -8,9 +8,8 @@ import useRepositories from '../../hooks/useRepositories';
 const RepositoryList = () => {
   const orderBy = useSelector(state => state.repositories.sortMode)
   const orderDirection = useSelector(state => state.repositories.orderDirection)
-  const state = useSelector(state => state.repositories)
-  console.log(state)
-  const { repos } = useRepositories(orderBy, orderDirection);
+  const searchKeyword = useSelector(state => state.repositories.searchKeyword)
+  const { repos } = useRepositories(orderBy, orderDirection, searchKeyword);
   
   return <RepositoryListContainer repositories={repos} />
 };
