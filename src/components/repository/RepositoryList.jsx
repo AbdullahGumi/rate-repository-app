@@ -9,8 +9,14 @@ const RepositoryList = () => {
   const orderBy = useSelector(state => state.repositories.sortMode)
   const orderDirection = useSelector(state => state.repositories.orderDirection)
   const searchKeyword = useSelector(state => state.repositories.searchKeyword)
-  const { repos } = useRepositories(orderBy, orderDirection, searchKeyword);
+  const first = 8;
+  const { repos, fetchMore } = useRepositories(orderBy, orderDirection, searchKeyword, first);
   
-  return <RepositoryListContainer repositories={repos} />
+  const onEndReach = () => {
+    fetchMore()
+  };
+
+
+  return <RepositoryListContainer repositories={repos} onEndReach={onEndReach}/>
 };
 export default RepositoryList;
