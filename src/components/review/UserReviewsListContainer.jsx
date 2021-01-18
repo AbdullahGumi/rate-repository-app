@@ -1,8 +1,11 @@
 import React from 'react';
-import { FlatList, View, Text, StyleSheet } from 'react-native';
+import { FlatList, View, Text, StyleSheet, Alert } from 'react-native';
 import { format } from 'date-fns';
+import { Button, Provider, Colors } from 'react-native-paper';
+import { useHistory } from "react-router-native";
 
 import theme from '../../theme';
+import useDelete from '../../hooks/useDelete'
 
 const styles = StyleSheet.create({
   separator: {
@@ -49,12 +52,39 @@ const styles = StyleSheet.create({
     color: theme.colors.textSecondary,
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
+  },
+  buttonsView: {
+    flexDirection: 'row', 
+    paddingBottom: 10,
+    justifyContent: 'space-evenly' 
   }
 });
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const UserReviewsListContainer = ({ reviews, onEndReach }) => {
+const UserReviewsListContainer = ({ reviews, onEndReach, refetch }) => {
+  const [ deleteReview ] = useDelete();
+  const history = useHistory();
+
+  const onView = (item) => {
+    history.push(`/repositories/${item.repository.id}`);
+  }
+
+  const onDelete = (item) => {
+    Alert.alert('Delete review', 'Are you sure you want to delete this review?', [
+      {
+        text: 'Cancel',
+        onPress: () =>  {},
+        style: 'cancel'
+      },
+      { text: 'DELETE', onPress: () => {
+        deleteReview(item.id)
+        refetch()
+      } }
+    ])
+  }
+
+
   const reviewNodes = reviews
     ? reviews.authorizedUser.reviews.edges.map((edge) => edge.node)
     : [];
@@ -64,27 +94,33 @@ const UserReviewsListContainer = ({ reviews, onEndReach }) => {
       data={reviewNodes}
       ItemSeparatorComponent={ItemSeparator}
       keyExtractor={(item) =>  item.id}
-      renderItem = {({ item }) =>    
-      <View style={styles.container}>
-      <View style={styles.flexContainerA}>
-        <View style={styles.rating}>
-          <Text style={styles.ratingText}> 
-              {item.rating}
-          </Text>
-        </View>
-        <View style={styles.flexContainerB}>
-          <View>
-            <Text style={styles.user}>{item.repository.fullName}</Text>
+      renderItem = {({ item }) =>
+      <Provider>    
+        <View style={styles.container}>
+        <View style={styles.flexContainerA}>
+          <View style={styles.rating}>
+            <Text style={styles.ratingText}> 
+                {item.rating}
+            </Text>
           </View>
-          <View>
-            <Text style={styles.date}>{format(new Date(item.createdAt), 'yyyy/MM/dd')}</Text>
+          <View style={styles.flexContainerB}>
+            <View>
+              <Text style={styles.user}>{item.repository.fullName}</Text>
+            </View>
+            <View>
+              <Text style={styles.date}>{format(new Date(item.createdAt), 'yyyy/MM/dd')}</Text>
+            </View>
+            <View>
+              <Text>{item.text}</Text>
+            </View>          
           </View>
-          <View>
-            <Text>{item.text}</Text>
-          </View>          
         </View>
-      </View>      
-    </View>
+        <View style={styles.buttonsView}>
+          <Button style={{ backgroundColor: Colors.blueA700}} color={Colors.white} onPress={() => onView(item)}>View repository</Button>      
+          <Button style={{ backgroundColor: Colors.redA700}} color={Colors.white} onPress={() => onDelete(item)}>Delete review</Button>
+        </View>  
+      </View>
+    </Provider>
     }
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}

@@ -104,6 +104,7 @@ query getAuthorizedUser($includeReviews: Boolean = false, $first: Int, $after: S
         node {
           repository {
             fullName
+            id
           }
           ...reviewDetails
         }

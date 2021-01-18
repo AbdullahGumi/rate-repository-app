@@ -7,13 +7,13 @@ import useUserReviews from '../../hooks/useUserReviews';
 
 const UserReviewsList = () => {
 
-    const { data, fetchMore } = useUserReviews();
+    const { data, fetchMore, refetch } = useUserReviews();
     
   const onEndReach = () => {
     fetchMore()
   };
 
 
-  return <UserReviewsListContainer reviews={data} onEndReach={onEndReach}/>
+  return <UserReviewsListContainer reviews={data} onEndReach={onEndReach} refetch={refetch}/>
 };
 export default UserReviewsList;
