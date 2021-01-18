@@ -29,6 +29,12 @@ const AppBarTab = () => {
 							</Link>												
 						}						
 						<Text>  </Text>
+						{data && data.authorizedUser &&
+							<Link to='/userReviews'>
+								<Text color='primary' fontWeight='bold'>My reviews</Text>
+							</Link>												
+						}						
+						<Text>  </Text>
 						{data && !data.authorizedUser ? (
 							<View style={{ flexDirection: 'row' }}>
 								<View>

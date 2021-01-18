@@ -8,6 +8,7 @@ import AppBar from './app-bar/AppBar';
 import SignIn from './signin/SignIn';
 import SignUp from './signup/SignUp';
 import NewReview from './review/NewReview';
+import UserReviewsList from './review/UserReviewsList';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,6 +36,9 @@ const Main = () => {
         </Route>
         <Route path="/createReview" exact>
           <NewReview />
+        </Route>
+        <Route path="/userReviews" exact>
+          <UserReviewsList />
         </Route>
         <Redirect to="/" />
       </Switch>
